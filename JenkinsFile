@@ -4,14 +4,16 @@ environment {
 }
   agent {
     docker {
-       image 'smithacn/jenkins-agent:v1'
-       args '--user root --entrypoint=/bin/sh -v /var/run/docker.sock:/var/run/docker.sock'
+      image 'smithacn/ultimate-cicd-pipeline-second:v1'
+      args '-v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
   stages {
     stage('Checkout') {
       steps {
         sh 'echo passed'
+        sh 'echo "Container is alive!"'
+        sh 'docker --version'
        // git branch: 'main', url: 'https://github.com/Smitha-CN/java-springboot-CICID.git'
       }
     }
