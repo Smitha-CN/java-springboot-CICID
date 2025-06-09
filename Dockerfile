@@ -1,10 +1,9 @@
-# You can change this base image to anything else
-# But make sure to use the correct version of Java
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM openjdk:17
+WORKDIR /app
+COPY . .
 
-# Simply the artifact path
 ARG artifact=target/spring-boot-web.jar
+RUN test -f "$artifact"
+RUN echo "Found $artifact"
 
-WORKDIR /opt/app
-
-COPY ${artifact} app.jar
+CMD ["java", "-jar", "$artifact"]
