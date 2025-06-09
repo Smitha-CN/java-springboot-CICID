@@ -1,8 +1,11 @@
 pipeline {
+environment {
+  HOME = '/root'  // ensures some tools work inside Docker agent
+}
   agent {
     docker {
       image 'smithacn/ultimate-cicd-pipeline-second:v1'
-      args '--user root --entrypoint=tail -v /var/run/docker.sock:/var/run/docker.sock' 
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=/bin/sh'
     }
   }
   stages {
