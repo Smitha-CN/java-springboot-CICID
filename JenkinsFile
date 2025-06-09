@@ -4,7 +4,7 @@ environment {
 }
   agent {
     docker {
-        image 'smithacn/ultimate-cicd-pipeline-second:v1'
+       image 'smithacn/jenkins-agent:v1'
        args '--user root --entrypoint=/bin/sh -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
